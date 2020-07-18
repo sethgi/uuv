@@ -1,0 +1,16 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="worlds/alfie_sim.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+
+  <param name="robot_description" textfile="$(find muddsub_gazebo)/models/alfie/alfie.sdf" />
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-sdf -param robot_description -model Alfie"
+    output="screen">
+  </node>
+</launch>
